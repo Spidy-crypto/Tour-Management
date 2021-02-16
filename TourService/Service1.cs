@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -7,25 +8,51 @@ using System.Text;
 
 namespace TourService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        public bool addUser(string email, string fname, string lname, string password)
         {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
             {
-                throw new ArgumentNullException("composite");
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                using (con)
+                {
+                    string command = "INSERT INTO users(email,fname,lname,password)VALUES(@email,@fname,@lname,@password)";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    int res = cmd.ExecuteNonQuery();
+                    if (res == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;    
+                    }
+                }
             }
-            if (composite.BoolValue)
+            catch (Exception err)
             {
-                composite.StringValue += "Suffix";
+                return false;
             }
-            return composite;
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
         }
     }
 }
