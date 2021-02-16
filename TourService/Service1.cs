@@ -54,5 +54,54 @@ namespace TourService
                 }
             }
         }
+
+        public bool checkUser(string email,string password)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                using (con)
+                {
+                    string command = "select * from users where email = '" + email + "' and password = '" + password + "'";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    rdr.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
+
+        public bool getSingleUser(string email)
+        {
+            return true;
+        }
+
+
     }
 }

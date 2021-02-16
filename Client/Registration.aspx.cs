@@ -9,20 +9,21 @@ namespace Client
 {
     public partial class Registration : System.Web.UI.Page
     {
+        ServiceReference1.Service1Client client;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            client = new ServiceReference1.Service1Client();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
-            if(client.addUser("raj@gmail.com", "raj", "kalathiiya", "1234")){
-                email.Text = "hehe";
+            if (client.addUser(email.Text, fname.Text, lname.Text, password.Text))
+            {
+                Label1.Text = "User Added";
             }
             else
             {
-                email.Text = "haha";
+                Label1.Text = "Error";
             }
         }
     }

@@ -20,6 +20,18 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addUser", ReplyAction="http://tempuri.org/IService1/addUserResponse")]
         System.Threading.Tasks.Task<bool> addUserAsync(string email, string fname, string lname, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getSingleUser", ReplyAction="http://tempuri.org/IService1/getSingleUserResponse")]
+        bool getSingleUser(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getSingleUser", ReplyAction="http://tempuri.org/IService1/getSingleUserResponse")]
+        System.Threading.Tasks.Task<bool> getSingleUserAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/checkUser", ReplyAction="http://tempuri.org/IService1/checkUserResponse")]
+        bool checkUser(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/checkUser", ReplyAction="http://tempuri.org/IService1/checkUserResponse")]
+        System.Threading.Tasks.Task<bool> checkUserAsync(string email, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +67,22 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> addUserAsync(string email, string fname, string lname, string password) {
             return base.Channel.addUserAsync(email, fname, lname, password);
+        }
+        
+        public bool getSingleUser(string email) {
+            return base.Channel.getSingleUser(email);
+        }
+        
+        public System.Threading.Tasks.Task<bool> getSingleUserAsync(string email) {
+            return base.Channel.getSingleUserAsync(email);
+        }
+        
+        public bool checkUser(string email, string password) {
+            return base.Channel.checkUser(email, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> checkUserAsync(string email, string password) {
+            return base.Channel.checkUserAsync(email, password);
         }
     }
 }
