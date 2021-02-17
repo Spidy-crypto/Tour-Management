@@ -58,6 +58,10 @@
       <Project>{72cd9718-e72a-425e-8a8f-fce18465235f}</Project>
       <Name>TourService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tour_CRUD\Tour_CRUD.csproj">
+      <Project>{f31b3d12-912c-43a5-aa94-a5983fc0ae92}</Project>
+      <Name>Tour_CRUD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -229,5 +229,49 @@ namespace TourService
                 }
             }
         }
+
+        public bool update(string email,string fname,string lname)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+
+                using (con)
+                {
+                    string command = "UPDATE Place set fname = @fname, lanme = @lname where id='" + email + "' ";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    cmd.Parameters.Add("@fname", fname);
+                    cmd.Parameters.Add("@lname", lname);
+                    int res = cmd.ExecuteNonQuery();
+                    if (res == 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
     }
 }

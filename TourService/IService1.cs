@@ -18,6 +18,10 @@ namespace TourService
         User getSingleUser(String email);
 
         [OperationContract]
+
+        bool update(String email,String fname,String lname);
+
+        [OperationContract]
         List<User> getUsers();
 
         [OperationContract]

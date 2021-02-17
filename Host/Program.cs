@@ -12,11 +12,14 @@ namespace Host
         static void Main(string[] args)
         {
             using(ServiceHost host = new ServiceHost(typeof(TourService.Service1)))
+            using(ServiceHost host1 = new ServiceHost(typeof(Tour_CRUD.crud)))
             {
                 host.Open();
+                host1.Open();
                 Console.WriteLine("Host started @ " + DateTime.Now);
                 Console.ReadLine();
             }
+            
         }
     }
 }

@@ -20,3 +20,6 @@ C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\obj\Debug\Host.csp
 C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\obj\Debug\Host.csproj.CopyComplete
 C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\obj\Debug\Host.exe
 C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\obj\Debug\Host.pdb
+C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\bin\Debug\Tour_CRUD.dll
+C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\bin\Debug\Tour_CRUD.pdb
+C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Host\bin\Debug\Tour_CRUD.dll.config
