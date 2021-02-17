@@ -9,6 +9,7 @@
 <body>
     
     <form id="form1" runat="server">
+        <asp:FileUpload ID="FileUpload1" runat="server" />
         <asp:TextBox ID="email" runat="server"></asp:TextBox><br />
         <asp:TextBox ID="password" runat="server" TextMode="Password"></asp:TextBox><br />
         <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" />

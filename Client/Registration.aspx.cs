@@ -17,14 +17,16 @@ namespace Client
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (client.addUser(email.Text, fname.Text, lname.Text, password.Text))
+
+            if (client.addUser(email.Value, firstname.Value, lastname.Value, password.Value))
             {
-                Label1.Text = "User Added";
+                Response.Redirect("Login.aspx");
             }
             else
             {
-                Label1.Text = "Error";
+                email.Value = "";
             }
         }
+
     }
 }

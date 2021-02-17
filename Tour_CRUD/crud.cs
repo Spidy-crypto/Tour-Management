@@ -8,7 +8,6 @@ using System.Text;
 
 namespace Tour_CRUD
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class crud : IService1
     {
         public bool addPlace(string name, string desc, string price, string imagepath)
@@ -24,10 +23,10 @@ namespace Tour_CRUD
                     string command = "INSERT INTO [Place](name,description,price,imagepath)VALUES(@name,@description,@price,@imagepath)";
                     cmd = new SqlCommand(command, con);
                     con.Open();
-                    cmd.Parameters.AddWithValue("@name", "paras");
-                    cmd.Parameters.AddWithValue("@description", "sd");
-                    cmd.Parameters.AddWithValue("@price", "rice");
-                    cmd.Parameters.AddWithValue("@imagepath", "sd");
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@description", desc);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@imagepath", imagepath);
                     int res = cmd.ExecuteNonQuery();
                     if (res == 1)
                     {
