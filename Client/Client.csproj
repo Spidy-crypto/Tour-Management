@@ -96,6 +96,8 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="css\login.css" />
+    <Content Include="css\Registration.css" />
     <Content Include="Login.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Web.config" />
