@@ -15,9 +15,15 @@ namespace TourService
 
         [OperationContract]
 
-        bool getSingleUser(String email);
+        User getSingleUser(String email);
+
+        [OperationContract]
+        List<User> getUsers();
 
         [OperationContract]
         bool checkUser(String email,String password);
+
+        [OperationContract]
+        bool delete(String email, String password);
     }
 }

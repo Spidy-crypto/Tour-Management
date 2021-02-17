@@ -26,6 +26,7 @@
     <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="6b7f9479-cf64-4c70-b28e-e6cc9775a3cd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/TourService/Service1/?wsdl" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="a5203c48-8d69-44d2-b5d9-8ee148e9e443" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/TourService/Service1/?xsd=xsd0" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="36d2cc26-9e27-4cc5-a303-21ea45f47a35" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/TourService/Service1/?disco" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="fc3be881-7d37-4b14-a20e-2528f1abf936" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/TourService/Service1/?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

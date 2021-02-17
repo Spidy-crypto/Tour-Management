@@ -13,7 +13,7 @@ namespace Client
         ServiceReference1.Service1Client client;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = "";
+            Label1.Text = "";   
             client = new ServiceReference1.Service1Client();
         }
 
@@ -25,9 +25,9 @@ namespace Client
             }
             else
             {
-                email.Text = "";
                 Label1.Text = "Invalid Username or Password";
             }
+            
         }
     }
 }

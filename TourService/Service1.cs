@@ -97,11 +97,137 @@ namespace TourService
             }
         }
 
-        public bool getSingleUser(string email)
+        public List<User> getUsers()
         {
-            return true;
+            List<User> users = new List<User>();
+            User u;
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                using (con)
+                {
+                    string command = "select * from users";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        u = new User();
+                        u.email = rdr["email"].ToString();
+                        u.fname = rdr["fname"].ToString();
+                        u.lname = rdr["lname"].ToString();
+                        users.Add(u);
+                    }
+                    rdr.Close();
+                    return users;
+                }
+            }
+            catch (Exception err)
+            {
+                return users;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
         }
 
+        public User getSingleUser(string email)
+        {
+            User u = new User();
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                using (con)
+                {
+                    string command = "select * from users where email = '" + email + "'";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        u.email = rdr["email"].ToString();
+                        u.fname = rdr["fname"].ToString();
+                        u.lname = rdr["lname"].ToString();
+                       
+                    }
+                    rdr.Close();
+                    return u;
+                }
+            }
+            catch (Exception err)
+            {
+                return u;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
 
+        public bool delete(string email, string password)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                using (con)
+                {
+                    string command = "select * from users where email = '" + email + "' and password = '" + password + "'";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        command = "delete from users where email = '" + email + "' and password = '" + password + "'";
+                        cmd = new SqlCommand(command, con);
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    rdr.Close();
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
     }
 }
