@@ -12,6 +12,13 @@ namespace Tour_CRUD
         string _desc;
         string _price;
         string _imagepath;
+        int _placeid;
+
+        public int placeid
+        {
+            get { return _placeid; }
+            set { _placeid = value; }
+        }
 
         public string name {
             get { return _name; }

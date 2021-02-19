@@ -17,7 +17,7 @@ namespace Tour_CRUD
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\Dells\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
                 using (con)
                 {
                     string command = "INSERT INTO [Place](name,description,price,imagepath)VALUES(@name,@description,@price,@imagepath)";
@@ -62,7 +62,7 @@ namespace Tour_CRUD
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "INSERT INTO [Fplace](email,placeid)VALUES(@email,@placeid)";
@@ -112,7 +112,7 @@ namespace Tour_CRUD
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "select * from Place";
@@ -122,13 +122,15 @@ namespace Tour_CRUD
                     while (rdr.Read())
                     {
                         u = new tour();
+                        u.placeid = (int)rdr["placeid"];
                         u.name = rdr["name"].ToString();
-                        u.desc = rdr["desc"].ToString();
+                        u.desc = rdr["description"].ToString();
                         u.price = rdr["price"].ToString();
                         u.imagepath = rdr["imagepath"].ToString();
                         users.Add(u);
                     }
                     rdr.Close();
+                    System.Console.WriteLine(users);
                     return users;
                 }
             }
@@ -157,7 +159,7 @@ namespace Tour_CRUD
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "select * from Place where id = '" + id + "'";
@@ -172,6 +174,7 @@ namespace Tour_CRUD
                         u.imagepath = rdr["imagepath"].ToString();
 
                     }
+                    con.Close();
                     rdr.Close();
                     return u;
                 }
@@ -179,6 +182,47 @@ namespace Tour_CRUD
             catch (Exception err)
             {
                 return u;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
+        
+        public List<tour> getFPlace(string email)
+        {
+            List<tour> fplaces = new List<tour>();  
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                using (con)
+                {
+                    string command = "select * from Fplace where email = '" + email + "'";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        fplaces.Add(getPlace((int)(rdr["placeid"])));
+                    }
+                    con.Close();
+                    rdr.Close();
+                    return fplaces;
+                }
+            }
+            catch (Exception err)
+            {
+                return fplaces;
             }
             finally
             {

@@ -106,6 +106,12 @@ namespace Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getSingleUser", ReplyAction="http://tempuri.org/IService1/getSingleUserResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference1.User> getSingleUserAsync(string email);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/update", ReplyAction="http://tempuri.org/IService1/updateResponse")]
+        bool update(string email, string fname, string lname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/update", ReplyAction="http://tempuri.org/IService1/updateResponse")]
+        System.Threading.Tasks.Task<bool> updateAsync(string email, string fname, string lname);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getUsers", ReplyAction="http://tempuri.org/IService1/getUsersResponse")]
         Client.ServiceReference1.User[] getUsers();
         
@@ -117,6 +123,12 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/checkUser", ReplyAction="http://tempuri.org/IService1/checkUserResponse")]
         System.Threading.Tasks.Task<bool> checkUserAsync(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/delete", ReplyAction="http://tempuri.org/IService1/deleteResponse")]
+        bool delete(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/delete", ReplyAction="http://tempuri.org/IService1/deleteResponse")]
+        System.Threading.Tasks.Task<bool> deleteAsync(string email, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -162,6 +174,14 @@ namespace Client.ServiceReference1 {
             return base.Channel.getSingleUserAsync(email);
         }
         
+        public bool update(string email, string fname, string lname) {
+            return base.Channel.update(email, fname, lname);
+        }
+        
+        public System.Threading.Tasks.Task<bool> updateAsync(string email, string fname, string lname) {
+            return base.Channel.updateAsync(email, fname, lname);
+        }
+        
         public Client.ServiceReference1.User[] getUsers() {
             return base.Channel.getUsers();
         }
@@ -176,6 +196,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> checkUserAsync(string email, string password) {
             return base.Channel.checkUserAsync(email, password);
+        }
+        
+        public bool delete(string email, string password) {
+            return base.Channel.delete(email, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> deleteAsync(string email, string password) {
+            return base.Channel.deleteAsync(email, password);
         }
     }
 }

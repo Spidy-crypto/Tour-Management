@@ -20,6 +20,9 @@ namespace Tour_CRUD
         tour getPlace(int id);
 
         [OperationContract]
+        List<tour> getFPlace(string email);
+
+        [OperationContract]
         bool updatePlace(int id,String name,String description,String price,String imagepath);
 
         [OperationContract]
