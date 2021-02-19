@@ -30,7 +30,8 @@ h2 {
 
     .reg input[type="text"],
     .reg input[type="email"],
-    .reg input[type="password"] {
+    .reg input[type="password"] 
+    {
         border: none;
         outline: none;
         height: 40px;

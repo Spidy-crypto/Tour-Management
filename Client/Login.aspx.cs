@@ -12,9 +12,11 @@ namespace Client
     public partial class Login : System.Web.UI.Page
     {
         ServiceReference1.Service1Client client;
+        ServiceReference2.Service1Client client1;
         protected void Page_Load(object sender, EventArgs e)
         {
             client = new ServiceReference1.Service1Client();
+            client1 = new ServiceReference2.Service1Client();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
