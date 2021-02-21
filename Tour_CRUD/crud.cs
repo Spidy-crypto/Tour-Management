@@ -12,12 +12,13 @@ namespace Tour_CRUD
     {
         public bool addPlace(string name, string desc, string price, string imagepath)
         {
+            Console.WriteLine("infereg");
             SqlConnection con = null;
             SqlCommand cmd = null;
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\Dells\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "INSERT INTO [Place](name,description,price,imagepath)VALUES(@name,@description,@price,@imagepath)";
@@ -34,12 +35,14 @@ namespace Tour_CRUD
                     }
                     else
                     {
+                        Console.WriteLine("dfwretf");
                         return false;
                     }
                 }
             }
             catch (Exception err)
             {
+                Console.WriteLine(err.ToString());
                 return false;
             }
             finally
@@ -153,6 +156,7 @@ namespace Tour_CRUD
 
         public tour getPlace(int id)
         {
+
             tour u = new tour();
             SqlConnection con = null;
             SqlCommand cmd = null;
@@ -162,20 +166,23 @@ namespace Tour_CRUD
                 con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
-                    string command = "select * from Place where id = '" + id + "'";
+                    string command = "select * from Place where placeid ='" + id + "'";
                     cmd = new SqlCommand(command, con);
                     con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
+                    Console.WriteLine("sdf");
                     while (rdr.Read())
                     {
+                        Console.WriteLine(rdr["placeid"]);
+                        u.placeid = (int)rdr["placeid"];
                         u.name = rdr["name"].ToString();
-                        u.desc = rdr["desc"].ToString();
+                        u.desc = rdr["description"].ToString();
                         u.price = rdr["price"].ToString();
                         u.imagepath = rdr["imagepath"].ToString();
-
+                        
                     }
-                    con.Close();
                     rdr.Close();
+                    con.Close();
                     return u;
                 }
             }
@@ -213,7 +220,7 @@ namespace Tour_CRUD
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        fplaces.Add(getPlace((int)(rdr["placeid"])));
+                        fplaces.Add(getPlace(Int32.Parse((string)rdr["placeid"])));
                     }
                     con.Close();
                     rdr.Close();
@@ -243,18 +250,69 @@ namespace Tour_CRUD
             SqlCommand cmd = null;
             try
             {
+                Console.WriteLine("1");
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
                 using (con)
                 {
-                    string command = "UPDATE Place set name = @name, description = @description, price = @price, imagepath = @imagepath where id='" + id + "' ";
+                    Console.WriteLine("2");
+                    string command = "UPDATE Place set name = @name, description = @description, price = @price, imagepath = @imagepath where placeid='" + id + "' ";
                     cmd = new SqlCommand(command, con);
                     con.Open();
                     cmd.Parameters.Add("@name", name);
                     cmd.Parameters.Add("@description", description);
                     cmd.Parameters.Add("@price", price);
                     cmd.Parameters.Add("@imagepath", imagepath);
+                    int res = cmd.ExecuteNonQuery();
+                    if (res == 1)
+                    {
+                        Console.WriteLine("3");
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                return false;
+                Console.WriteLine(err.ToString());
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
+
+
+        bool IService1.addpessenger(string fname, string lname, string email, string age, string trip_date)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                using (con)
+                {
+                    string command = "INSERT INTO [passenger](email,fname,lname,age,trip_date)VALUES(@email,@fname,@lname,@age,@trip_date)";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    cmd.Parameters.AddWithValue("@age", age);
+                    cmd.Parameters.AddWithValue("@trip_date", trip_date);
                     int res = cmd.ExecuteNonQuery();
                     if (res == 1)
                     {

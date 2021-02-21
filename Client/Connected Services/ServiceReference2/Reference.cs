@@ -167,6 +167,12 @@ namespace Client.ServiceReference2 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addToFav", ReplyAction="http://tempuri.org/IService1/addToFavResponse")]
         System.Threading.Tasks.Task<bool> addToFavAsync(string email, int placeid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addpessenger", ReplyAction="http://tempuri.org/IService1/addpessengerResponse")]
+        bool addpessenger(string fname, string lname, string email, string age, string trip_date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/addpessenger", ReplyAction="http://tempuri.org/IService1/addpessengerResponse")]
+        System.Threading.Tasks.Task<bool> addpessengerAsync(string fname, string lname, string email, string age, string trip_date);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -250,6 +256,14 @@ namespace Client.ServiceReference2 {
         
         public System.Threading.Tasks.Task<bool> addToFavAsync(string email, int placeid) {
             return base.Channel.addToFavAsync(email, placeid);
+        }
+        
+        public bool addpessenger(string fname, string lname, string email, string age, string trip_date) {
+            return base.Channel.addpessenger(fname, lname, email, age, trip_date);
+        }
+        
+        public System.Threading.Tasks.Task<bool> addpessengerAsync(string fname, string lname, string email, string age, string trip_date) {
+            return base.Channel.addpessengerAsync(fname, lname, email, age, trip_date);
         }
     }
 }

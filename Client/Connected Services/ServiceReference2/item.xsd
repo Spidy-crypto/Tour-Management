@@ -105,4 +105,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="addpessenger">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="lname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="age" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="trip_date" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addpessengerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="addpessengerResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

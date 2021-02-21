@@ -30,5 +30,8 @@ namespace Tour_CRUD
 
         [OperationContract]
         bool addToFav(String email, int placeid);
+
+        [OperationContract]
+        bool addpessenger(string fname, string lname, string email, string age, string trip_date);
     }
 }

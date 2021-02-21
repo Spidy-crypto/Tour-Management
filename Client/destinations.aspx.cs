@@ -18,6 +18,11 @@ namespace Client
         protected Client.ServiceReference2.tour[] places  { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["current_user"] == null)
+            {
+                Response.Redirect("login.aspx");
+            }
             client = new ServiceReference2.Service1Client();
 
             //List<Client.ServiceReference2.tplaces = client.getAllPlace();
@@ -41,16 +46,14 @@ namespace Client
             
 
             
-
-
-
         }
 
         protected void Button1_Command(object sender, CommandEventArgs e)
         {
             //l1.Text = e.CommandArgument.ToString();
             //Console.WriteLine(e.CommandArgument.ToString());
-            client.addToFav("p@g.com", Int32.Parse(e.CommandArgument.ToString()));
+            string email = Session["current_user"].ToString();
+            client.addToFav(email, Int32.Parse(e.CommandArgument.ToString()));
         }
 
        

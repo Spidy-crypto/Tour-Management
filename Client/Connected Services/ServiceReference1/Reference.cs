@@ -129,6 +129,12 @@ namespace Client.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/delete", ReplyAction="http://tempuri.org/IService1/deleteResponse")]
         System.Threading.Tasks.Task<bool> deleteAsync(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getpassengers", ReplyAction="http://tempuri.org/IService1/getpassengersResponse")]
+        Client.ServiceReference1.User[] getpassengers(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/getpassengers", ReplyAction="http://tempuri.org/IService1/getpassengersResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference1.User[]> getpassengersAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -204,6 +210,14 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> deleteAsync(string email, string password) {
             return base.Channel.deleteAsync(email, password);
+        }
+        
+        public Client.ServiceReference1.User[] getpassengers(string email) {
+            return base.Channel.getpassengers(email);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference1.User[]> getpassengersAsync(string email) {
+            return base.Channel.getpassengersAsync(email);
         }
     }
 }

@@ -18,3 +18,4 @@ C:\Users\Dells\Documents\GitHub\Tour-Management\TourService\bin\Debug\TourServic
 C:\Users\Dells\Documents\GitHub\Tour-Management\TourService\obj\Debug\TourService.csproj.CoreCompileInputs.cache
 C:\Users\Dells\Documents\GitHub\Tour-Management\TourService\obj\Debug\TourService.dll
 C:\Users\Dells\Documents\GitHub\Tour-Management\TourService\obj\Debug\TourService.pdb
+C:\Users\Dells\Documents\GitHub\Tour-Management\TourService\obj\Debug\TourService.csprojAssemblyReference.cache

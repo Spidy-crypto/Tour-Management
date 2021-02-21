@@ -17,7 +17,7 @@ namespace TourService
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "INSERT INTO users(email,fname,lname,password)VALUES(@email,@fname,@lname,@password)";
@@ -62,7 +62,7 @@ namespace TourService
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "select * from users where email = '" + email + "' and password = '" + password + "'";
@@ -106,7 +106,7 @@ namespace TourService
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "select * from users";
@@ -150,7 +150,7 @@ namespace TourService
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "select * from users where email = '" + email + "'";
@@ -192,7 +192,7 @@ namespace TourService
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 using (con)
                 {
                     string command = "select * from users where email = '" + email + "' and password = '" + password + "'";
@@ -237,7 +237,7 @@ namespace TourService
             try
             {
                 con = new SqlConnection();
-                con.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename = C:\Users\rajka\OneDrive\Documents\GitHub\Tour-Management\Client\App_Data\Database.mdf;Integrated Security = True";
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
                 using (con)
                 {
@@ -260,6 +260,51 @@ namespace TourService
             catch (Exception err)
             {
                 return false;
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Dispose();
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                }
+            }
+        }
+
+        public List<User> getpassengers(string email)
+        {
+            List<User> users = new List<User>();
+            User u;
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            try
+            {
+                con = new SqlConnection();
+                con.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                using (con)
+                {
+                    string command = "select * from passenger where email = '"+ email +"'";
+                    cmd = new SqlCommand(command, con);
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        u = new User();
+                        u.email = rdr["email"].ToString();
+                        u.fname = rdr["fname"].ToString();
+                        u.lname = rdr["lname"].ToString();
+                        users.Add(u);
+                    }
+                    rdr.Close();
+                    return users;
+                }
+            }
+            catch (Exception err)
+            {
+                return users;
             }
             finally
             {

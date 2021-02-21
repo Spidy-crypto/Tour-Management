@@ -29,5 +29,8 @@ namespace TourService
 
         [OperationContract]
         bool delete(String email, String password);
+
+        [OperationContract]
+        List<User> getpassengers(string email);
     }
 }

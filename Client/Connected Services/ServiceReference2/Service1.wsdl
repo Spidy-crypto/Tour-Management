@@ -49,6 +49,12 @@
   <wsdl:message name="IService1_addToFav_OutputMessage">
     <wsdl:part name="parameters" element="tns:addToFavResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_addpessenger_InputMessage">
+    <wsdl:part name="parameters" element="tns:addpessenger" />
+  </wsdl:message>
+  <wsdl:message name="IService1_addpessenger_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addpessengerResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="addPlace">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addPlace" message="tns:IService1_addPlace_InputMessage" />
@@ -77,6 +83,10 @@
     <wsdl:operation name="addToFav">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/addToFav" message="tns:IService1_addToFav_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/addToFavResponse" message="tns:IService1_addToFav_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addpessenger">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/addpessenger" message="tns:IService1_addpessenger_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/addpessengerResponse" message="tns:IService1_addpessenger_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -137,6 +147,15 @@
     </wsdl:operation>
     <wsdl:operation name="addToFav">
       <soap:operation soapAction="http://tempuri.org/IService1/addToFav" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addpessenger">
+      <soap:operation soapAction="http://tempuri.org/IService1/addpessenger" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

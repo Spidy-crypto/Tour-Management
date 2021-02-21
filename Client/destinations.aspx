@@ -17,6 +17,25 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="styles/destinations.css">
 <link rel="stylesheet" type="text/css" href="styles/destinations_responsive.css">
+
+    <style>
+		.favourite{
+			border-radius: 10px;
+			font-size: 15px;
+			
+			 width:auto;
+			 height :auto;
+			background-color: #4CAF50;
+			  color: white;
+			 border: 2px solid #4CAF50; /* Green */
+		}
+
+		.favourite:hover {
+			  //background-color: #000000;
+			  //color: white;
+			}
+    </style>
+
 </head>
 <body>
 	<form id="form1" runat="server">
@@ -33,11 +52,11 @@
 							<div class="logo"><a href="index.html">Travello</a></div>
 							<nav class="main_nav">
 								<ul class="d-flex flex-row align-items-start justify-content-start">
-									<li><a href="index.html">Home</a></li>
-									<li><a href="about.html">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="news.html">News</a></li>
+									<li><a href="destinations.aspx">Home</a></li>
+									<li><a href="favourite.aspx">Favourite Places</a></li>
+								
 									<li><a href="contact.html">Contact</a></li>
+									<li><a href="logout.aspx">Log-out</a></li>
 								</ul>
 							</nav>
 							<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
@@ -74,11 +93,11 @@
 		</div>
 		<div class="menu_content">
 			<ul>
-				<li><a href="inex.html">Home</a></li>
-				<li><a href="about.html">About us</a></li>
+				<li><a href="destinations.aspx">Home</a></li>
+				<li><a href="favourite.aspx">Favourite Places</a></li>
 				<li><a href="#">Services</a></li>
-				<li><a href="news.html">News</a></li>
-				<li><a href="contact.html">Contact</a></li>
+				<li><a href="#">News</a></li>
+				<li><a href="#">Contact</a></li>
 			</ul>
 		</div>
 		<div class="menu_social">
@@ -213,23 +232,12 @@
 								<div class="destination item">
 									<div class="destination_image">
 										<img src="images/<%# Eval("imagepath") %>" alt="">
-										<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+										<div><asp:Button CssClass="favourite" ID="Button1" runat="server" Text="Add To Favourite" CommandName="ThisBtnClick" onCommand="Button1_Command" CommandArgument='<%# Eval("placeid")%>' OnClick="Button1_Click" /></div>
 									</div>
 									<div class="destination_content">
-										<div class="destination_title"><a href="#"><%# Eval("name") %></a></div>
-										
-										<div class="buttons">
-									
-												<div class="buttons_container d-flex flex-row align-items-start justify-content-start">
-													<div class="button" runat="server">
-														<asp:Button ID="Button1" runat="server" Text="Button" CommandName="ThisBtnClick" onCommand="Button1_Command" CommandArgument='<%# Eval("placeid")%>' OnClick="Button1_Click" /></div>
-                                        
-												</div>
-									
-										</div>
-										
-                           
-
+                                        <div class="row">
+											<div class="destination_title"><a href="#"><%# Eval("name") %></a></div>		
+                                        </div>
 										<div class="destination_subtitle"><p><%# Eval("desc") %></p></div>
 										<div class="destination_price">From <%# Eval("price") %></div>
 										<div class="destination_list">
